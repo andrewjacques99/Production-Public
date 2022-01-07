@@ -1,4 +1,5 @@
-﻿$DCList = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+$DCList = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+
 foreach ($DC in $DCList.DomainControllers)
     {
     $DC.Name
