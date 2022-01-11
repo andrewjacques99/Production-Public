@@ -1,5 +1,7 @@
+#Obtain Domain Controller List 
 $DCList = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 
+#Check each Domain provided by the $DC variable and display output. 
 foreach ($DC in $DCList.DomainControllers)
     {
     $DC.Name
