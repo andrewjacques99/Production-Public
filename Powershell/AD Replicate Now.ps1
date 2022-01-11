@@ -1,4 +1,4 @@
-﻿$DC = Get-ADDomainController -Discover -Service PrimaryDC
+$DC = Get-ADDomainController -Discover -Service PrimaryDC
 
 repadmin /syncall $DC /AedP | Out-Null
 repadmin /syncall $DC /Aed  | Out-Null
