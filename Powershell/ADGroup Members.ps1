@@ -1,4 +1,4 @@
-﻿$OUList = Get-ADGroup -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
+$OUList = Get-ADGroup -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
 
 $OU = $OUList | Out-GridView -Title "Select OU and Click OK" -OutputMode Single
 $ADGroupFilter = "*"
