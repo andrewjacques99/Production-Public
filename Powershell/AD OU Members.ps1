@@ -1,4 +1,4 @@
-﻿$OUList = Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
+$OUList = Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
 
 $OU = $OUList | Out-GridView -Title "Select OU and Click OK" -OutputMode Single
 $ADUserFilter = "*"
