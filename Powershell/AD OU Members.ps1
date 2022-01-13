@@ -10,3 +10,4 @@ foreach ($ADUser in $ADUsers)
     {
     Write-Host $ADUser.Name
     }
+Clear-Variable ADuser

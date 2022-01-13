@@ -15,3 +15,4 @@ foreach ($ADGroup in $ADGroups)
     # Write-Host $ADGroupMember.name -Separator ","
     Write-Host ""
     }
+    Clear-Variable ADGroup
