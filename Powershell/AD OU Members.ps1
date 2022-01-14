@@ -8,5 +8,5 @@ $ADUsers = Get-ADUser -SearchBase $OU.DistinguishedName -Filter $ADUserFilter -P
 $OU.DistinguishedName
 Write-Host "------------"
 $ADUsers
-Clear-Variable ADuser
+Clear-Variable ADusers
 Clear-Variable OUList
