@@ -16,3 +16,4 @@ foreach ($ADGroup in $ADGroups)
     Write-Host ""
     }
     Clear-Variable ADGroup
+    Clear-Variable OUList
