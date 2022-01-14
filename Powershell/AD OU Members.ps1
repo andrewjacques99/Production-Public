@@ -9,3 +9,4 @@ $OU.DistinguishedName
 Write-Host "------------"
 $ADUsers
 Clear-Variable ADuser
+Clear-Variable OUList
