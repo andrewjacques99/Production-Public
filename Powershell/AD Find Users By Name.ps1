@@ -1,4 +1,4 @@
-﻿#Obtain user name
+#Obtain user name
 
 $User = Read-Host -Prompt "Name (Example: john | john glen | *glen)" 
 
