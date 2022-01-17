@@ -1,4 +1,4 @@
-#Gets a list of Groups
+#Creates a list of Groups
 $OUList = Get-ADGroup -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
 
 #Create a Gridview list of Groups, to uses as a selection
