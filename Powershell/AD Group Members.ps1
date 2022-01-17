@@ -17,8 +17,4 @@ $ADListUsers
 #If "Cannot find an object with identity: SamAccountName", this is probally another Group, check your AD to confirm
 
 #Clears the Variables, this stops any issue with the variables bring back any previous held information
-Clear-Variable ADGroups
-Clear-Variable OUList
-Clear-Variable OU
-Clear-Variable ADUser
-Clear-Variable ADGroupMember
+Remove-Variable * -ErrorAction SilentlyContinue
