@@ -1,4 +1,4 @@
-﻿#Gets a list of OU
+#Gets a list of OU
 $OUList = Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
 
 #Create a Gridview list of Groups, to uses as a selection
