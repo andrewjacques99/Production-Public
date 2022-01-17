@@ -12,6 +12,5 @@ $OU.DistinguishedName
 Write-Host "------------"
 $ADUsers
 
-Clear-Variable ADUsers
-Clear-Variable OUList
-Clear-Variable OU
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
+Remove-Variable * -ErrorAction SilentlyContinue
