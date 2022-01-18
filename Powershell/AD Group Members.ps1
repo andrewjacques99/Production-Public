@@ -1,5 +1,5 @@
 #Creates a list of Groups
-$OUList = Get-ADGroup -Filter * -Properties Name,DistinguishedName | Select-Object -Property Name,DistinguishedName
+$OUList = Get-ADGroup -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 
 #Create a Gridview list of Groups, to uses as a selection
 $OU = $OUList | Out-GridView -Title "Select OU and Click OK" -OutputMode Single
