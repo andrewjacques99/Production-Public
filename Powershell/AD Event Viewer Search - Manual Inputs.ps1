@@ -1,4 +1,4 @@
-﻿# Starting Message
+# Starting Message
 Write-Output "Computer Name and Log Name are required inputs"
 
 
