@@ -43,7 +43,7 @@ foreach ($Computer in $Computers)
     # Write-Host $Computer.name
     $Output += Get-WinEvent -ComputerName $Computer.Name -LogName $LogName -FilterXPath $FilterPath | Where {$_.Message -like $MessageFilter} | Select-Object TimeCreated, MachineName, ID, Message, UserID
     }
-    $Output | Sort-Object TimeCreated | Out-GridView
+    $Output | Sort-Object TimeCreated | Out-GridView -Title "Select Event List"
 
 # Clear all variables
 Remove-Variable * -ErrorAction SilentlyContinue
