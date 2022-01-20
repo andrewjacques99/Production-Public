@@ -5,7 +5,7 @@ Write-Host "Computer Name : " $ComputerSelect.Name
 
 # Gets Service List
 $ServiceList = Get-Service -ComputerName $ComputerSelect.Name | Sort-Object
-$ServiceSelection = $ServiceList | Out-GridView -Title "Select Computer Name and Click OK" -OutputMode Single
+$ServiceSelection = $ServiceList | Out-GridView -Title "Select Service Name and Click OK" -OutputMode Single
 Write-Host "Service Name :" $ServiceSelection.Name
 Write-Host "Service Display Name :" $ServiceSelection.DisplayName
 
