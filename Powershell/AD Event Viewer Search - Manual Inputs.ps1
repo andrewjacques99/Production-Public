@@ -1,4 +1,3 @@
-﻿
 # Computer name input
 Write-Host "-Mandatory-" -ForegroundColor Red
 $ComputerFilter =  Read-Host -Prompt "Computer Name (Example: adxadk01)"
