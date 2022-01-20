@@ -1,7 +1,7 @@
 # Gets a list of Computers
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect = $ComputerList | Out-GridView -Title "Select Computer Name and Click OK" -OutputMode Single
-Write-Host "Computer: " $ComputerSelect.Name
+Write-Host "Computer Name : " $ComputerSelect.Name
 
 # Gets Service List
 $ServiceList = Get-Service -ComputerName $ComputerSelect.Name | Sort-Object
