@@ -8,7 +8,7 @@ $ComputerFilter = Read-Host -Prompt "Computer Name (Example: adxadk01)"
 
 # Last x Minutes
 
-$Minutes = 12000
+$Minutes = 12000000
 
 # Start Search
 $FormatEnumerationLimit = -1
