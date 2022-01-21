@@ -1,4 +1,4 @@
-# Gets a list of Computers
+﻿# Gets a list of Computers
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect = $ComputerList | Out-GridView -Title "Select Computer Name and Click OK" -OutputMode Single
 
@@ -18,12 +18,23 @@ $WriteResultsToConsole = $true
 
 $filePathsAndLengths = [System.Collections.ArrayList]::new()
 
-$DirectoryPathToScan = Read-Host -Prompt "File Path"
+$DirectoryPathToScan = Read-Host -Prompt "File Path" 
+$TestPath = Invoke-command -ComputerName $ComputerSelect.Name -scriptBlock {
+Test-Path -Path $args[0]
+} -ArgumentList $DirectoryPathToScan
+If ($TestPath)
+{
+Write-Host "Path is Valid" -ForegroundColor Green
+}
+Else
+{
+Write-Host "Path does not exist" -ForegroundColor Red
+}
 
 
 $ListFolderItems = Invoke-Command -ComputerName $ComputerSelect.Name -ScriptBlock {
 
-Get-ChildItem -Path $args[0] -Recurse -Force |
+Get-ChildItem -Path $args[0] -Recurse -Force -ErrorAction SilentlyContinue |
 Select-Object -Property FullName, @{Name = "FullNameLength"; Expression = { ($_.FullName.Length) } } |
 Sort-Object -Property FullNameLength -Descending 
 
