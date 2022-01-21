@@ -19,13 +19,13 @@ Write-Host "No User Found" -ForegroundColor Red
 #CSV File Export Prompts
 if ($ListADUsers)
 {
-    $Export = Read-Host - Prompt "Would you like to save as a CSV? Y/N"
+    $Export = Read-Host -Prompt "Would you like to save as a CSV? Y/N (Default is N)"
         if ($Export -eq 'y')
         {
-        $ExportLocation = Read-Host - Prompt "Provide the location (Example: c:\)"
+        $ExportLocation = Read-Host -Prompt "Provide the location (Example: c:\)"
             if ($ExportLocation)
             {
-            $ExportFileName = Read-Host - Prompt "Provide the filename (Example: CSVTest.csv) if the file already exisits you will need to re-run the script"
+            $ExportFileName = Read-Host -Prompt "Provide the filename (Example: CSVTest.csv) if the file already exisits you will need to re-run the script"
                 if ($ExportFileName -like '*.csv')
                 {
                 $ExportCombined = -join($ExportLocation,$ExportFileName)

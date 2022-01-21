@@ -29,6 +29,7 @@ Write-Host "Path is Valid" -ForegroundColor Green
 Else
 {
 Write-Host "Path does not exist" -ForegroundColor Red
+Remove-Variable * -ErrorAction SilentlyContinue
 Exit
 }
 
@@ -60,4 +61,4 @@ if ($length -ge $MinimumPathLengthsToShow)
         $filePathsAndLengths.Add($_) > $null
     }
 }
-    
+Remove-Variable * -ErrorAction SilentlyContinue 
