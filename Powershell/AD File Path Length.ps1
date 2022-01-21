@@ -29,6 +29,7 @@ Write-Host "Path is Valid" -ForegroundColor Green
 Else
 {
 Write-Host "Path does not exist" -ForegroundColor Red
+Exit
 }
 
 
