@@ -7,6 +7,9 @@ $OU = $OUList | Out-GridView -Title "Select Group and Click OK" -OutputMode Sing
 #Gets the AD Group members SamAccoountName as per the Group selected, converts the Output to a String
 $ADGroupMember = @(Get-ADGroupMember -identity $OU.Name | Select-Object -Property SamAccountName | select -ExpandProperty SamAccountName -Unique | Out-String -stream)
 
+$Group.DistinguishedName
+Write-Host "------------"
+
 #Check each SamAccountName againest the Active Driectory and display the Name, Account Status and Last Log on Date
 ForEach ($ADUser in $ADGroupMember)
 {
