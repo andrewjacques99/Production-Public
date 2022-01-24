@@ -1,4 +1,4 @@
-﻿#Select First Machine
+#Select First Machine
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect1 = $ComputerList | Out-GridView -Title "Select First Computer Name and Click OK" -OutputMode Single
 Write-Host "Computer 1: " $ComputerSelect1.Name
