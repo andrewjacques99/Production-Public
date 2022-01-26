@@ -1,4 +1,4 @@
-﻿#Paramaters
+#Paramaters
 
 Param (
 [Parameter(Mandatory=$true)]
