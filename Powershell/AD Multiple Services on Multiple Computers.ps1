@@ -5,7 +5,7 @@ Param (
 [string[]]
 ${Service Name (Place ** around name for wild card search)}
 )
-$Service = ${Service Name (Place ** around name for wild card search)}
+#$Service = ${Service Name (Place ** around name for wild card search)}
 
 filter leftside{
 param(
