@@ -1,11 +1,12 @@
 #Paramaters
-
+<#
 Param (
 [Parameter(Mandatory=$true)]
 [string[]]
 ${Service Name (Place ** around name for wild card search)}
 )
 #$Service = ${Service Name (Place ** around name for wild card search)}
+#>
 
 filter leftside{
 param(
@@ -86,6 +87,24 @@ $header = @"
 
 "@
 
+Set New line using OFS special Powershell variable
+
+$OFS = "`n"
+
+#Externally set input value as string
+
+[string[]] $_ServerList= @()
+
+#Get the input from the user
+
+$_ServerList = READ-HOST "Enter List Services"
+
+#splitting the list of input as array by Comma & Empty Space
+
+$_ServerList = $_ServerList.Split(',').Split(' ')
+$Services = $_ServerList + $OFS
+$Services
+
 # Gets a list of Computers
 
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
@@ -97,7 +116,7 @@ Write-Host "Computer: " $ComputerSelect.Name
 $ADComputers = $ComputerSelect.Name
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
-$ServiceList = Get-Service -Name ${Service Name (Place ** around name for wild card search)} -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
+$ServiceList = Get-Service -Name Services -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
  If (($ServiceList -ne $null) -and ($ServiceList.Status -like "Running") -or ($ServiceList.Status -like "Stopped")) 
     { 
      $ServiceList
