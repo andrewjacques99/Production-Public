@@ -1,3 +1,13 @@
+
+<#
+    .SYNOPSIS
+Compare Two folders for missing files and folders. 
+Ability to selected different computers.
+Each Path input will be validated.
+If a folder is missing, it will not show an extension on the name and the files inside that folder will not be displayed.
+
+#>
+
 #Select First Machine
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect1 = $ComputerList | Out-GridView -Title "Select First Computer Name and Click OK" -OutputMode Single
