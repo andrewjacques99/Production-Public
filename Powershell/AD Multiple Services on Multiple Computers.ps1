@@ -97,7 +97,7 @@ Write-Host "Computer: " $ComputerSelect.Name
 $ADComputers = $ComputerSelect.Name
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
-$ServiceList = Get-Service -Name $Service -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
+$ServiceList = Get-Service -Name ${Service Name (Place ** around name for wild card search)} -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
  If (($ServiceList -ne $null) -and ($ServiceList.Status -like "Running") -or ($ServiceList.Status -like "Stopped")) 
     { 
      $ServiceList
