@@ -3,9 +3,10 @@
 Param (
 [Parameter(Mandatory=$true)]
 [string[]]
-${Service Name (Place ** around name for wild card search)}
+$Service = (Read-Host - Prompt 'Service Name (Place ** around name for wild card search)')
+#${Service Name (Place ** around name for wild card search)}
 )
-$Service = ${Service Name (Place ** around name for wild card search)}
+#$Service = ${Service Name (Place ** around name for wild card search)}
 
 filter leftside{
 param(
