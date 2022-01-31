@@ -1,4 +1,4 @@
-﻿#Paramaters
+#Paramaters
 
 filter leftside{
 param(
