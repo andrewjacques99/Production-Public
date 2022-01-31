@@ -1,4 +1,4 @@
-﻿# Gets a list of Computers
+# Gets a list of Computers
 $ComputerList = Get-ADComputer -Filter * -Properties  Name,Operatingsystem, OperatingSystemVersion, OperatingSystemServicePack,IPv4Address | Sort-Object -Property Operatingsystem | Select-Object -Property Name,Operatingsystem, OperatingSystemVersion, OperatingSystemServicePack, IPv4Address
 $ComputerSelect = $ComputerList | Out-GridView -Title "Sorted By Operation System"
 
