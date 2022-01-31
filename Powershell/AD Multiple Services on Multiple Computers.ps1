@@ -1,4 +1,4 @@
-#Paramaters
+﻿#Paramaters
 
 filter leftside{
 param(
@@ -32,6 +32,13 @@ $header = @"
 
     }
 
+    p {
+
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000099;
+        font-size: 12px;
+
+    }
     
     
    table {
@@ -79,6 +86,7 @@ $header = @"
 
 "@
 
+
 #Set New line using OFS special Powershell variable
 
 $OFS = "`n"
@@ -97,38 +105,46 @@ $_ServerList = $_ServerList.Split(',').Split(' ')
 $Services = $_ServerList + $OFS
 $Services
 
+
 # Gets a list of Computers
 
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect = $ComputerList | Out-GridView -Title "Select Computer Name and Click OK" -PassThru
-Write-Host "Computer: " $ComputerSelect.Name
+Write-Host "Selected Computer/s: " $ComputerSelect.Name
 
 #Search for sevices on Selected Machine/s (non-terminating Error Messages Silenced)
 
 $ADComputers = $ComputerSelect.Name
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
-$ServiceList = Get-Service -Name $Services -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
- If (($ServiceList -ne $null) -and ($ServiceList.Status -like "Running") -or ($ServiceList.Status -like "Stopped")) 
-    { 
-     $ServiceList
+$ServiceList = $null
+  Try 
+    {
+    $ServiceList = Get-Service -Name $Services -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
     }
 
+   Catch
+    {
+    $Errs = $ADC + " - " + $_.Exception.Message
+    }
+
+  Finally
+    {
+    If (($ServiceList -ne $null) -and ($ServiceList.Status -like "Running") -or ($ServiceList.Status -like "Stopped"))
+    {
+    $ServiceList
+    }
+    }
 }
 
-
-#Output machine/s that did not responded 
-
-$Errs = Compare-Object -ReferenceObject $ComputerSelect.Name -DifferenceObject $OutputLoop.MachineName | leftside | Select-Object -Property *
 
 #Output results as a HTML Report
 
 $htmlreport1 = $OutputLoop | Convertto-html -Property MachineName,Name,DisplayName,Status -Fragment -PreContent "<h1>Services</h1>"
 $htmlreport1 = $htmlreport1 -replace '<td>Running</td>','<td class="RunningStatus">Running</td>' 
 $htmlreport1 = $htmlreport1 -replace '<td>Stopped</td>','<td class="StopStatus">Stopped</td>'
-$htmlreport2 = $Errs | Convertto-html -Property * -Fragment -PreContent "<h2>Skipped Machines Due to Errors</h2>"
-$report = convertto-html -Body "$htmlreport1 $htmlreport2" -Title "ADMultipleServicesMachines" -Head $header -PostContent "<p id='CreationDate'>Creation Date: $(Get-Date -Format dd/MM/yy)</p>"
+$report = convertto-html -Body "$htmlreport1 <h2>Skipped Machines Due to Errors</h2> <p>$errs</p>" -Title "ADMultipleServicesMachines" -Head $header -PostContent "<p id='CreationDate'>Creation Date: $(Get-Date -Format dd/MM/yy)</p>"
 $report | out-file .\ADMultipleServicesMachines.html
 Invoke-Expression .\ADMultipleServicesMachines.html
 
-Remove-Variable * -ErrorAction SilentlyContinue
+#Remove-Variable * -ErrorAction SilentlyContinue
