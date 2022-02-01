@@ -21,3 +21,6 @@ foreach ($ADUser in $ADUsers)
     Write-Host $ADUser.Name
     Set-ADAccountPassword -Identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $Password -Force)
     }
+    
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
+Remove-Variable * -ErrorAction SilentlyContinue
