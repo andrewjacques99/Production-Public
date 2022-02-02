@@ -133,4 +133,5 @@ $report = convertto-html -Body "$htmlreport1 <h2>Skipped Machines Due to Errors<
 $report | out-file .\ADMultipleServicesMachines.html
 Invoke-Expression .\ADMultipleServicesMachines.html
 
-#Remove-Variable * -ErrorAction SilentlyContinue
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
+Remove-Variable * -ErrorAction SilentlyContinue
