@@ -1,4 +1,4 @@
-﻿#Gets a list of OU
+#Gets a list of OU
 $OUList = Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 
 #Create a Gridview list of Groups, to uses as a selection
@@ -21,3 +21,6 @@ foreach ($ADUser in $ADUsers)
     Write-Host $ADUser.Name
     Set-ADAccountPassword -Identity $ADUser -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $Password -Force)
     }
+    
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
+Remove-Variable * -ErrorAction SilentlyContinue
