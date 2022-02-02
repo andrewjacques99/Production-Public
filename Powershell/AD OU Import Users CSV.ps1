@@ -6,7 +6,7 @@ $OU = $OUList | Out-GridView -Title "Select OU and Click OK" -OutputMode Single
 
   
 #Store the data from ADUsers.csv in the $ADUsers variable
-$CVLocation = Read-host -Prompt "File Location"
+$CVLocation = Read-host -Prompt "CSV File Location"
 
 
 #Check path and file location is correct
