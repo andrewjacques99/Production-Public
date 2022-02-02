@@ -1,17 +1,3 @@
-#Paramaters
-
-filter leftside{
-param(
-        [Parameter(Position=0, Mandatory=$true,ValueFromPipeline = $true)]
-        [ValidateNotNullOrEmpty()]
-        [PSCustomObject]
-        $obj
-    )
-
-    $obj|?{$_.sideindicator -eq '<='}
-
-}
-
 $header = @"
 <style>
 
@@ -97,7 +83,7 @@ $OFS = "`n"
 
 #Get the input from the user
 
-$_ServerList = READ-HOST "Enter List Services"
+$_ServerList = READ-HOST "Enter Services Name/s (Add stars for wildcard: Example *print*)"
 
 #splitting the list of input as array by Comma & Empty Space
 
@@ -147,4 +133,5 @@ $report = convertto-html -Body "$htmlreport1 <h2>Skipped Machines Due to Errors<
 $report | out-file .\ADMultipleServicesMachines.html
 Invoke-Expression .\ADMultipleServicesMachines.html
 
-#Remove-Variable * -ErrorAction SilentlyContinue
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
+Remove-Variable * -ErrorAction SilentlyContinue
