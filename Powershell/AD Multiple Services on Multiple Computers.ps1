@@ -83,7 +83,7 @@ $OFS = "`n"
 
 #Get the input from the user
 
-$_ServerList = READ-HOST "Enter List Services"
+$_ServerList = READ-HOST "Enter Services Name/s (Add stars for wildcard: Example *print*)"
 
 #splitting the list of input as array by Comma & Empty Space
 
