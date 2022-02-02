@@ -1,17 +1,3 @@
-#Paramaters
-
-filter leftside{
-param(
-        [Parameter(Position=0, Mandatory=$true,ValueFromPipeline = $true)]
-        [ValidateNotNullOrEmpty()]
-        [PSCustomObject]
-        $obj
-    )
-
-    $obj|?{$_.sideindicator -eq '<='}
-
-}
-
 $header = @"
 <style>
 
