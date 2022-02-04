@@ -111,6 +111,7 @@ $BootList = $null
     if ($uptime.Days -gt $DaysUp)
    {
    "$server Uptime : $($uptime.Days) Days, $($uptime.Hours) Hours, $($uptime.Minutes) Minutes"
+   Clear-Variable uptime -ErrorAction SilentlyContinue
    }
     }
 }
