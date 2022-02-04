@@ -101,7 +101,14 @@ Write-Host "----------"
 Write-Host "Processing Request"
 
 #Search for sevices on Selected Machine/s (non-terminating Error Messages Silenced)
+
+<#
+Creates an ArrayList for the Catch $errs in the ForEach.
+Otherwise the Catch only outputs the last error.
+#>
 $errs = New-Object System.Collections.ArrayList($null)
+
+#Search for sevices on Selected Machine/s (non-terminating Error Messages Silenced)
 $ADComputers = $ComputerSelect.Name
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
