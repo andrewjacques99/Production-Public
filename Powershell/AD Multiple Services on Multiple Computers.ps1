@@ -1,4 +1,4 @@
-$header = @"
+﻿$header = @"
 <style>
 
     h1 {
@@ -97,9 +97,11 @@ $Services
 $ComputerList = Get-ADComputer -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 $ComputerSelect = $ComputerList | Out-GridView -Title "Select Computer Name and Click OK" -PassThru
 Write-Host "Selected Computer/s: " $ComputerSelect.Name
+Write-Host "----------"
+Write-Host "Processing Request"
 
 #Search for sevices on Selected Machine/s (non-terminating Error Messages Silenced)
-
+$errs = New-Object System.Collections.ArrayList($null)
 $ADComputers = $ComputerSelect.Name
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
@@ -111,7 +113,7 @@ $ServiceList = $null
 
    Catch
     {
-    $Errs = $ADC + " - " + $_.Exception.Message
+    $errs += ($ADC + " - " + $_.Exception.Message)
     }
 
   Finally
@@ -129,9 +131,10 @@ $ServiceList = $null
 $htmlreport1 = $OutputLoop | Convertto-html -Property MachineName,Name,DisplayName,Status -Fragment -PreContent "<h1>Services</h1>"
 $htmlreport1 = $htmlreport1 -replace '<td>Running</td>','<td class="RunningStatus">Running</td>' 
 $htmlreport1 = $htmlreport1 -replace '<td>Stopped</td>','<td class="StopStatus">Stopped</td>'
-$report = convertto-html -Body "$htmlreport1 <h2>Skipped Machines Due to Errors</h2> <p>$errs</p>" -Title "ADMultipleServicesMachines" -Head $header -PostContent "<p id='CreationDate'>Creation Date: $(Get-Date -Format dd/MM/yy)</p>"
+$htmlreport2 = $errs | ConvertTo-Html -Property @{ l='Exception Message'; e={ $_ } } -Fragment
+$report = convertto-html -Body "$htmlreport1 <h2>Skipped Machines Due to Errors</h2> $htmlreport2" -Title "ADMultipleServicesMachines" -Head $header -PostContent "<p id='CreationDate'>Creation Date: $(Get-Date -Format dd/MM/yy)</p>"
 $report | out-file .\ADMultipleServicesMachines.html
 Invoke-Expression .\ADMultipleServicesMachines.html
 
 #Clears the Variables, this stops any issue with the variables bring back any previous held information
-Remove-Variable * -ErrorAction SilentlyContinue
+#Remove-Variable * -ErrorAction SilentlyContinue
