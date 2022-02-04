@@ -1,4 +1,4 @@
-﻿$header = @"
+$header = @"
 <style>
 
     h1 {
@@ -137,4 +137,4 @@ $report | out-file .\ADMultipleServicesMachines.html
 Invoke-Expression .\ADMultipleServicesMachines.html
 
 #Clears the Variables, this stops any issue with the variables bring back any previous held information
-#Remove-Variable * -ErrorAction SilentlyContinue
+Remove-Variable * -ErrorAction SilentlyContinue
