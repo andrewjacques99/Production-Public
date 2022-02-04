@@ -1,4 +1,4 @@
-﻿$header = @"
+$header = @"
 <style>
 
     h1 {
