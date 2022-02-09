@@ -91,7 +91,7 @@ Otherwise the Catch only outputs the last error.
 $errs = New-Object System.Collections.ArrayList($null)
 
 #Search for uptime on Selected Machine/s (non-terminating Error Messages Silenced)
-$servers = $ComputerSelect.Name
+$servers = $ComputerSelect.Name | Sort-Object
 $currentdate = Get-Date
 $OutputLoop = ForEach($server in $servers){
 $BootList = $null

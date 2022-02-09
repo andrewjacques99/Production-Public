@@ -109,7 +109,7 @@ Otherwise the Catch only outputs the last error.
 $errs = New-Object System.Collections.ArrayList($null)
 
 #Search for sevices on Selected Machine/s (non-terminating Error Messages Silenced)
-$ADComputers = $ComputerSelect.Name
+$ADComputers = $ComputerSelect.Name | Sort-Object
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
 $ServiceList = $null
