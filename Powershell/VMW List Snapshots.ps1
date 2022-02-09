@@ -1,6 +1,6 @@
 Get-PSSession | Remove-PSSession
 
-$VSphereServerImport = Import-Csv -Path C:\Temp\VMServers.csv
+$VSphereServerImport = Import-Csv -Path C:\Powershell Scripts\CSV\VMServers.csv
 
 #Import Modue vmware viautomation core 
 Import-Module vmware.vimautomation.core
