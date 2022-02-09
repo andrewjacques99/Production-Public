@@ -11,12 +11,12 @@ $SnapShotList = Get-VM | Get-SnapShot | Select Created, VM, Name, Description, S
 $SnapShotCount = $SnapShotList | Measure
 Write-Host "Snapshot Count = " $SnapShotCount.count
 #$SnapShotListOutput = $VSphereServerImport, $SnapShotList
-$SnapShotList | Out-GridView
+$SnapShotList | Sort-Object -Property VM | Out-GridView
 
 
 #Clears the Variables, this stops any issue with the variables bring back any previous held information
 Remove-Variable * -ErrorAction SilentlyContinue
 
-Remove-PSSession -Session (Get-PSSession)
+#Remove-PSSession
 $s = Get-PSSession
 Remove-PSSession -Session $s
