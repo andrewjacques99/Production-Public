@@ -88,7 +88,7 @@ $_ServiceList = READ-HOST "Enter Services Name/s split each service name using ;
 # Splitting the list of input as array by Comma & Empty Space
 
 $_ServiceList = $_ServiceList.Split(',').Split(';')
-$Services = $_ServerList + $OFS
+$Services = $_ServiceList + $OFS
 $Services
 
 
