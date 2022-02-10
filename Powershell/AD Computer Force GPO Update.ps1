@@ -8,3 +8,5 @@ foreach ($Server in $ComputerSelect)
     Invoke-Command -ComputerName $Server.Name -ScriptBlock {Gpupdate /Force}
     Invoke-Command –ScriptBlock {GPResult /r /SCOPE COMPUTER} –ComputerName $Server.Name
     }
+
+#test
