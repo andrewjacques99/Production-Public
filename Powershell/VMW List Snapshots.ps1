@@ -15,7 +15,3 @@ $SnapShotList | Sort-Object -Property VM | Out-GridView -Title "VMWare Snapshot 
 
 # Clears the Variables, this stops any issue with the variables bring back any previous held information
 Remove-Variable * -ErrorAction SilentlyContinue
-
-# Remove-PSSession
-$s = Get-PSSession
-Remove-PSSession -Session $s
