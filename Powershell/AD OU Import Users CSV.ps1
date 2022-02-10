@@ -1,15 +1,15 @@
-#Gets a list of OU
+# Gets a list of OU
 $OUList = Get-ADOrganizationalUnit -Filter * -Properties Name,DistinguishedName | Sort-Object | Select-Object -Property Name,DistinguishedName
 
-#Create a Gridview list of Groups, to uses as a selection
+# Create a Gridview list of Groups, to uses as a selection
 $OU = $OUList | Out-GridView -Title "Select OU and Click OK" -OutputMode Single
 
   
-#Store the data from ADUsers.csv in the $ADUsers variable
+# Store the data from ADUsers.csv in the $ADUsers variable
 $CVLocation = Read-host -Prompt "CSV File Location"
 
 
-#Check path and file location is correct
+# Check path and file location is correct
 $TestPath = Test-Path $CVLocation
 If ($TestPath)
 {
@@ -24,10 +24,10 @@ Exit
 
 
 
-#Store the data from ADUsers.csv in the $ADUsers variable
+# Store the data from ADUsers.csv in the $ADUsers variable
 $ADUsers = Import-csv $CVLocation
 
-#Loop through each row containing user details in the CSV file 
+# Loop through each row containing user details in the CSV file 
 foreach ($User in $ADUsers)
 {
 	#Read user data from each field in each row and assign the data to a variable as below
@@ -81,5 +81,5 @@ foreach ($User in $ADUsers)
 	}
 }
 
-#Clears the Variables, this stops any issue with the variables bring back any previous held information
+# Clears the Variables, this stops any issue with the variables bring back any previous held information
 Remove-Variable * -ErrorAction SilentlyContinue
