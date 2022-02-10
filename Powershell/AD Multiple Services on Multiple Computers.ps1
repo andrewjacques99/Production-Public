@@ -79,7 +79,7 @@ $OFS = "`n"
 
 # Externally set input value as string
 
-[string[]] $_ServerList= @()
+[string[]] $_ServiceList= @()
 
 # Get the input from the user
 
