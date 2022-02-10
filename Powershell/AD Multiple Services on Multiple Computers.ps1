@@ -83,11 +83,11 @@ $OFS = "`n"
 
 # Get the input from the user
 
-$_ServiceList = READ-HOST "Enter Services Name/s (Add stars for wildcard: Example *print*)"
+$_ServiceList = READ-HOST "Enter Services Name/s split each service name using ; (Add stars for wildcard: Example *print*)"
 
 # Splitting the list of input as array by Comma & Empty Space
 
-$_ServiceList = $_ServiceList.Split(',').Split(' ')
+$_ServiceList = $_ServiceList.Split(',').Split(';')
 $Services = $_ServerList + $OFS
 $Services
 
