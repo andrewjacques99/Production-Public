@@ -83,11 +83,11 @@ $OFS = "`n"
 
 # Get the input from the user
 
-$_ServerList = READ-HOST "Enter Services Name/s (Add stars for wildcard: Example *print*)"
+$_ServiceList = READ-HOST "Enter Services Name/s (Add stars for wildcard: Example *print*)"
 
 # Splitting the list of input as array by Comma & Empty Space
 
-$_ServerList = $_ServerList.Split(',').Split(' ')
+$_ServiceList = $_ServiceList.Split(',').Split(' ')
 $Services = $_ServerList + $OFS
 $Services
 
@@ -112,7 +112,7 @@ $errs = New-Object System.Collections.ArrayList($null)
 $ADComputers = $ComputerSelect.Name | Sort-Object
 $OutputLoop = ForEach ($ADC in $ADComputers)
 {
-$ServiceList = $null
+$ServerList = $null
   Try 
     {
     $ServiceList = Get-Service -Name $Services -ComputerName $ADC -ErrorAction SilentlyContinue | Select-Object -Property MachineName,Name,DisplayName,Status | Sort-Object 
