@@ -73,5 +73,5 @@ $SecondFolder = invoke-command -ComputerName $ComputerSelect2.Name -scriptblock 
 $Compare1 = Compare-Object -ReferenceObject $FirstFolder -DifferenceObject $SecondFolder -Property Name | Select-Object -property *
 $Compare1
 
-
+#Clears the Variables, this stops any issue with the variables bring back any previous held information
 Remove-Variable * -ErrorAction SilentlyContinue
